@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- ---------- Meta Tags ---------- -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <!-- -------x-- Meta Tags --x------- -->
+  
+  <title>HostelHub – Student Dashboard</title>
+  
+  <!-- ---------- Bootstrap CSS ------ -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" />
+  <!-- -------x-- Bootstrap CSS --x--- -->
+  
+  <!-- ---------- Fontawesome -------- -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- -------x-- Fontawesome --x----- -->
+  
+  <!-- ---------- Google Fonts ------- -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" />
+  <!-- -------x-- Google Fonts --x---- -->
+  
+  <!-- ---------- Custom CSS --------- -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    body { background: var(--light-bg); }
+    .dashboard-wrapper { display: flex; min-height: 100vh; }
+    /* Sidebar */    
+    .sidebar { min-height: 100vh; width: 240px; flex-shrink: 0; background: var(--primary); }
+    .sidebar-logo { padding: 1.4rem 1.4rem 1rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .sidebar-section-title { font-size: .7rem; text-transform: uppercase; letter-spacing: .12em; color: rgba(255,255,255,.4); padding: 1rem 1.4rem .4rem; }
+    @media (max-width: 768px) { .sidebar { display: none; } }
+    /* Main content */    
+    .main-content { flex: 1; padding: 0; overflow-x: hidden; }
+    /* Top bar */    
+    .top-bar { background: white; border-bottom: 1px solid var(--border); padding: .75rem 1.5rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+    .top-bar-right { display: flex; align-items: center; gap: 1rem; }
+    .avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--primary); color: white; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: .85rem; }
+    /* Notification badge */
+    .notif-btn { position: relative; }
+    .notif-dot { position: absolute; top: -2px; right: -2px; width: 8px; height: 8px; border-radius: 50%; background: #e74c3c; border: 2px solid white; }
+    /* Quick action cards */
+    .quick-action {
+      background: white; border-radius: var(--radius);
+      padding: 1.2rem; text-align: center;
+      border: 2px solid var(--border);
+      transition: var(--transition); cursor: pointer;
+    }
+    .quick-action:hover { border-color: var(--primary); background: rgba(26,60,94,.04); transform: translateY(-2px); }
+    .quick-action i { font-size: 1.6rem; color: var(--primary); margin-bottom: .5rem; display: block; }
+    .quick-action span { font-size: .82rem; font-weight: 600; color: var(--text-dark); }
+    /* Table */
+    .custom-table th { background: var(--primary); color: white; font-weight: 600; font-size: .88rem; padding: .75rem 1rem; }
+    .custom-table td { padding: .7rem 1rem; vertical-align: middle; font-size: .9rem; }
+    .custom-table tr:hover td { background: rgba(26,60,94,.03); }
+    .status-paid    { color: #0d7a4e; font-weight: 600; }
+    .status-pending { color: #c25a00; font-weight: 600; }
+  </style>
+  <!-- -------x-- Custom CSS --x------ -->
+  
+</head>
+<body>
+
+<div class="dashboard-wrapper">
+
+  <!-- ---------- Sidebar --------- -->
+  <aside class="sidebar">
+    <!-- Logo -->
+    <div class="sidebar-logo">
+      <a href="../index.html" style="color:white;font-family:var(--font-heading);font-size:1.2rem;font-weight:700;display:flex;align-items:center;gap:.5rem;">
+        <i class="fas fa-building-columns" style="color:var(--accent);"></i> HostelHub
+      </a>
+    </div>
+    <div class="sidebar-section-title">Main</div>
+    <a href="dashboard.html" class="sidebar-link active"><i class="fas fa-gauge-high"></i> Dashboard</a>
+    <a href="profile.html"   class="sidebar-link"><i class="fas fa-user"></i> My Profile</a>
+    <a href="rooms.html"     class="sidebar-link"><i class="fas fa-door-open"></i> My Room</a>
+
+    <div class="sidebar-section-title">Services</div>
+    <a href="#fees"       class="sidebar-link"><i class="fas fa-credit-card"></i> Fee Payments</a>
+    <a href="#" class="sidebar-link" data-bs-toggle="modal" data-bs-target="#complaintModal"><i class="fas fa-triangle-exclamation"></i> Complaints</a>
+    <a href="#"           class="sidebar-link"><i class="fas fa-calendar-days"></i> Leave Request</a>
+    <a href="admission.html" class="sidebar-link"><i class="fas fa-file-pen"></i> Applications</a>
+
+    <div class="sidebar-section-title">Account</div>
+    <a href="#" onclick="API.logout()" class="sidebar-link"><i class="fas fa-right-from-bracket"></i> Logout</a>
+  </aside>
+  <!-- -------x-- Sidebar --x------ -->
+
+  <!-- ---------- Main Content ------ -->
+  <div class="main-content">
+    <div class="top-bar">
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn btn-sm btn-outline-secondary d-md-none" onclick="document.querySelector('.sidebar').style.display='block'">
+          <i class="fas fa-bars"></i>
+        </button>
+        <span class="fw-600 text-primary-custom">Student Dashboard</span>
+      </div>
+      <div class="top-bar-right">
+        <button class="btn btn-sm btn-light notif-btn border">
+          <i class="fas fa-bell text-muted"></i>
+          <span class="notif-dot"></span>
+        </button>
+        <div class="d-flex align-items-center gap-2">
+          <div id="topbarAvatar" class="avatar">?</div>
+          <div class="d-none d-sm-block">
+            <div class="fw-600 small" style="line-height:1.2">John Student</div>
+            <div class="text-muted" style="font-size:.75rem;">CS-2024-0042</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-4">
+
+      <!-- Welcome Banner -->
+      <div class="rounded-3 p-4 mb-4 fade-up" style="background:linear-gradient(120deg,var(--primary),#0d2540);color:white;">
+        <div class="row align-items-center">
+          <div class="col">
+            <h3 id="dashGreeting" style="font-family:var(--font-heading);">Welcome! 👋</h3>
+            <p style="color:rgba(255,255,255,.75);margin:0;font-size:.92rem;">Your room is booked and active. Semester ends in <strong style="color:var(--accent);">42 days</strong>.</p>
+          </div>
+          <div class="col-auto d-none d-sm-block">
+            <i class="fas fa-building-columns fa-3x" style="color:rgba(255,255,255,.2);"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-lg-3 fade-up">
+          <div class="dashboard-stat-card">
+            <div class="text-muted small mb-1"><i class="fas fa-door-open me-1"></i>My Room</div>
+            <div id="dashRoom" style="font-family:var(--font-heading);font-size:1.5rem;color:var(--primary);">—</div>
+            <small id="dashRoomSub" class="text-muted">Loading...</small>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3 fade-up">
+          <div class="dashboard-stat-card" style="border-left-color:#0d7a4e;">
+            <div class="text-muted small mb-1"><i class="fas fa-credit-card me-1"></i>Fee Status</div>
+            <div id="dashFeeStatus" style="font-family:var(--font-heading);font-size:1.5rem;color:#0d7a4e;">—</div>
+            <small id="dashFeeSub" class="text-muted">Loading...</small>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3 fade-up">
+          <div class="dashboard-stat-card" style="border-left-color:#c25a00;">
+            <div class="text-muted small mb-1"><i class="fas fa-triangle-exclamation me-1"></i>Complaints</div>
+            <div id="dashComplaints" style="font-family:var(--font-heading);font-size:1.5rem;color:#c25a00;">—</div>
+            <small id="dashComplaintSub" class="text-muted">Loading...</small>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3 fade-up">
+          <div class="dashboard-stat-card" style="border-left-color:#245080;">
+            <div class="text-muted small mb-1"><i class="fas fa-calendar-check me-1"></i>Stay Duration</div>
+            <div style="font-family:var(--font-heading);font-size:1.5rem;color:var(--primary);">8 Months</div>
+            <small class="text-muted">Since April 2024</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <h5 class="fw-700 text-primary-custom mb-3 fade-up"><i class="fas fa-bolt me-2 text-accent"></i>Quick Actions</h5>
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3 fade-up">
+          <div class="quick-action" onclick="window.location='rooms.html'">
+            <i class="fas fa-door-open"></i>
+            <span>View Room</span>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 fade-up">
+          <div class="quick-action" onclick="window.location='#fees'">
+            <i class="fas fa-credit-card"></i>
+            <span>Pay Fees</span>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 fade-up">
+          <div class="quick-action" data-bs-toggle="modal" data-bs-target="#complaintModal">
+            <i class="fas fa-triangle-exclamation"></i>
+            <span>Raise Complaint</span>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 fade-up">
+          <div class="quick-action" onclick="window.location='profile.html'">
+            <i class="fas fa-user-pen"></i>
+            <span>Edit Profile</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notifications Panel -->
+      <div class="row g-4 mb-4">
+        <div class="col-lg-5 fade-up">
+          <div class="card-custom p-4 h-100">
+            <h5 class="fw-700 mb-3 text-primary-custom"><i class="fas fa-bell me-2 text-accent"></i>Notifications</h5>
+            <div class="d-flex gap-3 mb-3 pb-3 border-bottom">
+              <div style="width:36px;height:36px;border-radius:50%;background:#fff5e6;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-credit-card text-accent"></i></div>
+              <div><div class="small fw-600">Fee Due Reminder</div><div class="text-muted" style="font-size:.78rem;">Next fee due on Jan 5, 2025</div></div>
+            </div>
+            <div class="d-flex gap-3 mb-3 pb-3 border-bottom">
+              <div style="width:36px;height:36px;border-radius:50%;background:#e6f9f0;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-check text-success"></i></div>
+              <div><div class="small fw-600">Complaint Resolved</div><div class="text-muted" style="font-size:.78rem;">AC issue in Room 101 – Fixed</div></div>
+            </div>
+            <div class="d-flex gap-3">
+              <div style="width:36px;height:36px;border-radius:50%;background:rgba(26,60,94,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fas fa-bullhorn text-primary-custom"></i></div>
+              <div><div class="small fw-600">Hostel Notice</div><div class="text-muted" style="font-size:.78rem;">Water supply off Dec 20, 9–11 AM</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fee Summary Table -->
+        <div class="col-lg-7 fade-up" id="fees">
+          <div class="card-custom h-100">
+            <div class="p-3 border-bottom d-flex justify-content-between align-items-center">
+              <h5 class="fw-700 mb-0 text-primary-custom"><i class="fas fa-receipt me-2 text-accent"></i>Fee History</h5>
+              <button class="btn btn-sm btn-outline-primary">Pay Now</button>
+            </div>
+            <div class="table-responsive">
+              <table class="table custom-table mb-0">
+                <thead>
+                  <tr>
+                    <th>Month</th>
+                    <th>Amount</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="feeTableBody">
+                  <tr>
+                    <td>December 2024</td>
+                    <td>1,800 PKR </td>
+                    <td>Dec 5, 2024</td>
+                    <td><span class="status-paid"><i class="fas fa-circle-check me-1"></i>Paid</span></td>
+                  </tr>
+                  <tr>
+                    <td>November 2024</td>
+                    <td> 3,250 PKR </td>
+                    <td>Nov 5, 2024</td>
+                    <td><span class="status-paid"><i class="fas fa-circle-check me-1"></i>Paid</span></td>
+                  </tr>
+                  <tr>
+                    <td>October 2024</td>
+                    <td> 2,300 PKR </td>
+                    <td>Oct 5, 2024</td>
+                    <td><span class="status-paid"><i class="fas fa-circle-check me-1"></i>Paid</span></td>
+                  </tr>
+                  <tr>
+                    <td>January 2025</td>
+                    <td> 2,500 PKR </td>
+                    <td>Jan 5, 2025</td>
+                    <td><span class="status-pending"><i class="fas fa-clock me-1"></i>Pending</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+   <!-- -------x-- Main Content --x---- -->
+   
+   <!-- ---------- Bootstrap JS ------- -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js">
+  </script>
+  <!-- -------x-- Bootstrap JS --x---- -->
+  
+  <!-- ---------- Custom JS ---------- -->
+  <script src="../js/main.js"></script>
+  <!-- -------x-- Custom JS --x------- -->
+  
+
+<!-- Complaint Modal -->
+<div class="modal fade" id="complaintModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-700 text-primary-custom"><i class="fas fa-triangle-exclamation me-2 text-accent"></i>Raise a Complaint</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label fw-600">Title</label>
+          <input type="text" id="cTitle" class="form-control" placeholder="e.g. WiFi not working" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-600">Category</label>
+          <select id="cCategory" class="form-control">
+            <option>Maintenance</option><option>Noise</option><option>Food</option><option>WiFi</option><option>Other</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-600">Description</label>
+          <textarea id="cDesc" class="form-control" rows="3" placeholder="Describe the issue..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button id="cSubmitBtn" class="btn btn-primary" onclick="submitComplaint()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../js/api.js"></script>
+<script>
+  API.requireLogin();
+  const user = API.getUser();
+
+  async function loadDashboard() {
+    const r = await API.getMyProfile();
+    if (r && r.ok) {
+      const p = r.data;
+      const firstName = p.full_name ? p.full_name.split(' ')[0] : p.username;
+      const initials  = p.full_name ? p.full_name.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase() : '??';
+      document.getElementById('dashGreeting').textContent  = `Good day, ${firstName}! 👋`;
+      document.getElementById('topbarName').textContent    = p.full_name || p.username;
+      document.getElementById('topbarId').textContent      = p.cnic || p.email;
+      document.getElementById('topbarAvatar').textContent  = initials;
+      if (p.room) {
+        document.getElementById('dashRoom').textContent    = `Room ${p.room.room_number}`;
+        document.getElementById('dashRoomSub').textContent = p.room.room_type || 'Allocated';
+      } else {
+        document.getElementById('dashRoom').textContent    = p.is_approved ? 'Pending Room' : 'Not Approved';
+        document.getElementById('dashRoomSub').textContent = p.is_approved ? 'Awaiting allocation' : 'Application pending';
+      }
+    }
+
+    // Fees
+    const fr = await API.getMyFees();
+    if (fr && fr.ok) {
+      const fees   = fr.data;
+      const pending = fees.filter(f => f.status === 'Pending');
+      document.getElementById('dashFeeStatus').textContent = pending.length > 0 ? pending.length + ' Pending' : 'All Paid';
+      document.getElementById('dashFeeStatus').style.color = pending.length > 0 ? '#c25a00' : '#0d7a4e';
+      document.getElementById('dashFeeSub').textContent    = pending.length > 0 ? `PKR ${pending.reduce((a,f)=>a+f.amount,0).toLocaleString()} due` : 'No outstanding fees';
+
+      // Fill fee table
+      const tbody = document.getElementById('feeTableBody');
+      if (fees.length > 0) {
+        tbody.innerHTML = fees.map(f => `
+          <tr>
+            <td>${f.description}</td>
+            <td>PKR ${f.amount.toLocaleString()}</td>
+            <td>${f.due_date}</td>
+            <td><span class="${f.status==='Paid'?'status-paid':'status-pending'}">
+              <i class="fas fa-${f.status==='Paid'?'circle-check':'clock'} me-1"></i>${f.status}
+            </span></td>
+          </tr>`).join('');
+      } else {
+        tbody.innerHTML = '<tr><td colspan="4" class="text-center text-muted py-3">No fee records found.</td></tr>';
+      }
+    }
+
+    // Complaints
+    const cr = await API.getMyComplaints();
+    if (cr && cr.ok) {
+      const open = cr.data.filter(c => c.status === 'Open').length;
+      document.getElementById('dashComplaints').textContent = open > 0 ? open + ' Open' : 'None Open';
+      document.getElementById('dashComplaintSub').textContent = open > 0 ? 'Awaiting resolution' : 'All resolved';
+    }
+  }
+
+  async function submitComplaint() {
+    const title    = document.getElementById('cTitle').value.trim();
+    const desc     = document.getElementById('cDesc').value.trim();
+    const category = document.getElementById('cCategory').value;
+    if (!title || !desc) { API.toast('Title and description are required', 'error'); return; }
+    const btn = document.getElementById('cSubmitBtn');
+    btn.disabled = true; btn.textContent = 'Submitting...';
+    const r = await API.submitComplaint({ title, description: desc, category });
+    if (r.ok) {
+      API.toast('Complaint submitted!');
+      bootstrap.Modal.getOrCreateInstance(document.getElementById('complaintModal')).hide();
+      document.getElementById('cTitle').value = '';
+      document.getElementById('cDesc').value  = '';
+      loadDashboard();
+    } else {
+      API.toast(r.data.message || 'Failed to submit', 'error');
+    }
+    btn.disabled = false; btn.textContent = 'Submit';
+  }
+
+  loadDashboard();
+</script>
+</body>
+</html>

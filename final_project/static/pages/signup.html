@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- ---------- Meta Tags ---------- -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <!-- -------x-- Meta Tags --x------- -->
+  
+  <title>HostelHub – Sign Up</title>
+  
+  <!-- ---------- Bootstrap CSS ------ -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" />
+  <!-- -------x-- Bootstrap CSS --x--- -->
+  
+  <!-- ---------- Fontawesome -------- -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- -------x-- Fontawesome --x----- -->
+  
+  <!-- ---------- Google Fonts ------- -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" />
+  <!-- -------x-- Google Fonts --x---- -->
+  
+  <!-- ---------- Custom CSS --------- -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    body { background: var(--light-bg); min-height: 100vh; display: flex; flex-direction: column; }
+    .auth-page { flex: 1; display: flex; align-items: stretch; min-height: 100vh; }
+    .auth-brand-panel {
+      background: linear-gradient(150deg, #0d2540 0%, var(--primary) 100%);
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 3rem 2.5rem; color: white;
+    }
+    .auth-form-panel { flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem; overflow-y: auto; }
+    .auth-card { width: 100%; max-width: 460px; }
+    .toggle-pw  { cursor: pointer; color: var(--text-muted); }
+    .input-group .form-control { border-right: none; }
+    .input-group .input-group-text { background: white; border-left: none; }
+    .pw-strength { height: 4px; border-radius: 2px; transition: width .3s, background .3s; }
+    @media (max-width: 768px) { .auth-brand-panel { display: none; } }
+  </style>
+  <!-- -------x-- Custom CSS --x------ -->
+  
+</head>
+<body>
+
+  <div class="auth-page">
+
+    <div class="auth-brand-panel d-none d-md-flex">
+      <div class="text-center">
+        <i class="fas fa-building-columns fa-4x mb-3" style="color:var(--accent);"></i>
+        <h2 style="font-family:var(--font-heading);font-size:2rem;">Join HostelHub</h2>
+        <p style="color:rgba(255,255,255,.75);max-width:300px;margin-top:.75rem;">Create your student account to apply for rooms, manage your stay, and connect with the community.</p>
+        <div class="mt-4">
+          <div class="d-flex align-items-center gap-3 text-start mb-3">
+            <div style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;"><i class="fas fa-check text-accent"></i></div>
+            <span class="small" style="color:rgba(255,255,255,.85);">Apply for rooms online</span>
+          </div>
+          <div class="d-flex align-items-center gap-3 text-start mb-3">
+            <div style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;"><i class="fas fa-check text-accent"></i></div>
+            <span class="small" style="color:rgba(255,255,255,.85);">Track application status</span>
+          </div>
+          <div class="d-flex align-items-center gap-3 text-start">
+            <div style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;"><i class="fas fa-check text-accent"></i></div>
+            <span class="small" style="color:rgba(255,255,255,.85);">Pay fees and manage profile</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="auth-form-panel">
+      <div class="auth-card py-4">
+
+        <a href="../index.html" class="text-muted small d-inline-flex align-items-center gap-1 mb-4">
+          <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+
+      <!-- ---------- Registration Form ---------- -->
+      <h2 class="text-primary-custom mb-1"> Create Account </h2>
+        <p class="text-muted small mb-4">Fill in your details to register as a student.</p>
+
+        <form class="needs-validate" novalidate>
+          <div class="row g-3">
+            <!-- Name -->
+            <div class="col-6">
+              <label class="form-label fw-600">First Name</label>
+              <input type="text" id="signupFirstName" class="form-control form-control-custom" placeholder="John" required />
+            </div>
+            <div class="col-6">
+              <label class="form-label fw-600">Last Name</label>
+              <input type="text" id="signupLastName" class="form-control form-control-custom" placeholder="Doe" required />
+            </div>
+
+            <div class="col-12">
+              <label class="form-label fw-600">Email Address</label>
+              <div class="input-group">
+                <span class="input-group-text border-end-0"><i class="fas fa-envelope text-muted"></i></span>
+                <input type="email" id="signupEmail" class="form-control form-control-custom border-start-0" placeholder="student@university.edu" required />
+              </div>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-600">Student ID / Roll Number</label>
+              <div class="input-group">
+                <span class="input-group-text border-end-0"><i class="fas fa-id-card text-muted"></i></span>
+                <input type="text" id="signupStudentId" class="form-control form-control-custom border-start-0" placeholder="CS-2024-0042" required />
+              </div>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-600">Phone Number</label>
+              <div class="input-group">
+                <span class="input-group-text border-end-0"><i class="fas fa-phone text-muted"></i></span>
+                <input type="tel" id="signupPhone" class="form-control form-control-custom border-start-0" placeholder="+1 555 0123" required />
+              </div>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-600">Password</label>
+              <div class="input-group">
+                <span class="input-group-text border-end-0"><i class="fas fa-lock text-muted"></i></span>
+                <input type="password" id="signupPassword" class="form-control form-control-custom border-start-0 border-end-0" placeholder="Min 8 characters" required oninput="checkStrength(this.value)" />
+                <span class="input-group-text toggle-pw" onclick="togglePw('signupPassword', this)">
+                  <i class="fas fa-eye"></i>
+                </span>
+              </div>
+              <div class="mt-1" style="background:var(--border);height:4px;border-radius:2px;">
+                <div id="pwStrengthBar" class="pw-strength" style="width:0%;background:red;"></div>
+              </div>
+              <small id="pwStrengthLabel" class="text-muted"></small>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-600">Confirm Password</label>
+              <div class="input-group">
+                <span class="input-group-text border-end-0"><i class="fas fa-lock text-muted"></i></span>
+                <input type="password" id="confirmPassword" class="form-control form-control-custom border-start-0 border-end-0" placeholder="Re-enter password" required />
+                <span class="input-group-text toggle-pw" onclick="togglePw('confirmPassword', this)">
+                  <i class="fas fa-eye"></i>
+                </span>
+              </div>
+            </div>
+            
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="agreeTerms" required />
+                <label class="form-check-label small" for="agreeTerms">
+                  I agree to the <a href="#" class="text-accent">Terms of Service</a> and <a href="#" class="text-accent">Privacy Policy</a>
+                </label>
+              </div>
+            </div>
+            
+            <div class="col-12 mt-2">
+              <button type="submit" class="btn-primary-custom w-100 justify-content-center pulse">
+                <i class="fas fa-user-plus"></i> Create My Account
+              </button>
+            </div>
+          </div>
+        </form>
+ 
+        <p class="text-center text-muted small mt-4">
+          Already have an account? <a href="login.html" class="text-accent fw-600">Login here</a>
+        </p>
+
+      </div>
+    </div>
+  </div>
+  <!-- -------x-- Registration Form --x------- -->
+
+  <!-- ---------- Bootstrap JS ------- -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js">
+  </script>
+  <!-- -------x-- Bootstrap JS --x---- -->
+  
+  <!-- ---------- Custom JS ---------- -->
+  <script src="../js/main.js"></script>
+  <script>
+    function togglePw(inputId, btn) {
+      const input = document.getElementById(inputId);
+      const icon  = btn.querySelector('i');
+      input.type = input.type === 'password' ? 'text' : 'password';
+      icon.classList.toggle('fa-eye');
+      icon.classList.toggle('fa-eye-slash');
+    }
+
+    function checkStrength(val) {
+      const bar   = document.getElementById('pwStrengthBar');
+      const label = document.getElementById('pwStrengthLabel');
+      let strength = 0;
+      if (val.length >= 8) strength++;
+      if (/[A-Z]/.test(val)) strength++;
+      if (/[0-9]/.test(val)) strength++;
+      if (/[^A-Za-z0-9]/.test(val)) strength++;
+      const levels = [
+        { w: '0%',   c: 'red',    t: '' },
+        { w: '25%',  c: '#e85c0d', t: 'Weak' },
+        { w: '50%',  c: '#e8a020', t: 'Fair' },
+        { w: '75%',  c: '#4caf50', t: 'Good' },
+        { w: '100%', c: '#0d7a4e', t: 'Strong' }
+      ];
+      bar.style.width      = levels[strength].w;
+      bar.style.background = levels[strength].c;
+      label.textContent    = levels[strength].t;
+    }
+  </script>
+  <script src="../js/api.js"></script>
+  <script>
+    API.redirectIfLoggedIn();
+
+    document.querySelector('.needs-validate').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      if (!this.checkValidity()) { this.classList.add('was-validated'); return; }
+
+      const pw  = document.getElementById('signupPassword').value;
+      const cpw = document.getElementById('confirmPassword').value;
+      if (pw !== cpw)   { API.toast('Passwords do not match', 'error'); return; }
+      if (pw.length < 6){ API.toast('Password must be at least 6 characters', 'error'); return; }
+
+      const firstName = document.getElementById('signupFirstName').value.trim();
+      const lastName  = document.getElementById('signupLastName').value.trim();
+      const username  = (firstName + lastName).toLowerCase().replace(/\s+/g, '') ||
+                        document.getElementById('signupEmail').value.split('@')[0];
+      const email     = document.getElementById('signupEmail').value.trim();
+
+      const btn = this.querySelector('button[type=submit]');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating account...';
+
+      const r = await API.signup(username, email, pw);
+      if (r.ok) {
+        API.toast('Account created! Redirecting to login...');
+        setTimeout(() => window.location.href = 'login.html', 1200);
+      } else {
+        API.toast(r.data.message || 'Signup failed', 'error');
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-user-plus"></i> Create My Account';
+      }
+    });
+  </script>
+  <!-- -------x-- Custom JS --x------- -->
+  
+</body>
+</html>

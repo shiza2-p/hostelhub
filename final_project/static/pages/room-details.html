@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- ---------- Meta Tags ---------- -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <!-- -------x-- Meta Tags --x------- -->
+  
+  <title>HostelHub – Room Details</title>
+  
+  <!-- ---------- Bootstrap CSS ------ -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" />
+  <!-- -------x-- Bootstrap CSS --x--- -->
+  
+  <!-- ---------- Fontawesome -------- -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- -------x-- Fontawesome --x----- -->
+  
+  <!-- ---------- Google Fonts ------- -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" />
+  <!-- -------x-- Google Fonts --x---- -->
+  
+  <!-- ---------- Custom CSS --------- -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .gallery-thumb { cursor: pointer; border-radius: 8px; overflow: hidden; border: 3px solid transparent; transition: var(--transition); }
+    .gallery-thumb:hover { border-color: var(--accent); }
+    .gallery-thumb img { height: 80px; width: 100%; object-fit: cover; }
+    .main-img { border-radius: 14px; overflow: hidden; box-shadow: var(--shadow-md); }
+    .main-img img { width: 100%; height: 380px; object-fit: cover; }
+    .price-tag { background: var(--primary); color: var(--white); padding: .5rem 1.2rem; border-radius: 50px; font-family: var(--font-heading); font-size: 1.4rem; }
+    .info-row { display: flex; align-items: center; gap: .75rem; padding: .7rem 0; border-bottom: 1px solid var(--border); }
+    .info-row:last-child { border-bottom: none; }
+    .info-row i { width: 24px; color: var(--accent); }
+  </style>
+  <!-- -------x-- Custom CSS --x------ -->
+  
+</head>
+<body>
+
+  <!-- ---------- Navbar ---------- -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html"><i class="fas fa-building-columns"></i> HostelHub</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-center gap-1">
+          <li class="nav-item"><a class="nav-link" href="../index.html"><i class="fas fa-house me-1"></i>Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html"><i class="fas fa-circle-info me-1"></i>About</a></li>
+          <li class="nav-item"><a class="nav-link active" href="rooms.html"><i class="fas fa-door-open me-1"></i>Rooms</a></li>
+          <li class="nav-item"><a class="nav-link" href="admission.html"><i class="fas fa-file-pen me-1"></i>Apply</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html"><i class="fas fa-right-to-bracket me-1"></i>Login</a></li>
+          <li class="nav-item"><a class="nav-link btn-nav-cta ms-2" href="signup.html"><i class="fas fa-user-plus me-1"></i>Sign Up</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- -------x-- Navbar --x------- -->
+
+  <!-- ---------- Page Banner ---------- -->
+  <section class="page-banner">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-3">
+          <li class="breadcrumb-item"><a href="../index.html" style="color:var(--accent);">Home</a></li>
+          <li class="breadcrumb-item"><a href="rooms.html" style="color:var(--accent);">Rooms</a></li>
+          <li class="breadcrumb-item active text-white">Room 101</li>
+        </ol>
+      </nav>
+      <h1 class="fade-up">Room 101 – Single Occupancy</h1>
+      <p class="fade-up">Ground floor · Block A · Available from Jan 1, 2025</p>
+    </div>
+  </section>
+  <!-- -------x-- Page Banner --x------- -->
+
+  <!-- ---------- Room Image & Info ---------- -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-7 fade-up">
+          <div class="main-img mb-3">
+            <img id="mainRoomImg" src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80" alt="Room 101" />
+          </div>
+          <div class="row g-2">
+            <div class="col-3 gallery-thumb" onclick="document.getElementById('mainRoomImg').src='https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80'">
+              <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=200&q=70" alt="View 1" />
+            </div>
+            <div class="col-3 gallery-thumb" onclick="document.getElementById('mainRoomImg').src='https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800&q=80'">
+              <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=200&q=70" alt="View 2" />
+            </div>
+            <div class="col-3 gallery-thumb" onclick="document.getElementById('mainRoomImg').src='https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&q=80'">
+              <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=200&q=70" alt="View 3" />
+            </div>
+            <div class="col-3 gallery-thumb" onclick="document.getElementById('mainRoomImg').src='https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80'">
+              <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=200&q=70" alt="View 4" />
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 fade-up">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <span class="price-tag"> 2500 pkr <small style="font-size:.7em;opacity:.75">/ month</small></span>
+            <span class="badge-room badge-available">Available</span>
+          </div>
+
+          <div class="info-row"><i class="fas fa-hashtag"></i><span><strong>Room No.</strong> 101 – Block A, Ground Floor</span></div>
+          <div class="info-row"><i class="fas fa-user"></i><span><strong>Occupancy</strong> Single (1 person)</span></div>
+          <div class="info-row"><i class="fas fa-ruler-combined"></i><span><strong>Room Size</strong> 180 sq. ft.</span></div>
+          <div class="info-row"><i class="fas fa-bath"></i><span><strong>Bathroom</strong> Attached Private</span></div>
+          <div class="info-row"><i class="fas fa-wind"></i><span><strong>Ventilation</strong> Air Conditioned + Window</span></div>
+          <div class="info-row"><i class="fas fa-wifi"></i><span><strong>Internet</strong> High-speed WiFi included</span></div>
+          <div class="info-row"><i class="fas fa-calendar-check"></i><span><strong>Available From</strong> January 1, 2025</span></div>
+
+          <div class="d-flex gap-3 mt-4">
+            <a href="admission.html" class="btn-primary-custom flex-grow-1 justify-content-center">
+              <i class="fas fa-file-pen"></i> Apply for This Room
+            </a>
+          </div>
+          <a href="rooms.html" class="btn btn-link text-muted mt-2 d-inline-block p-0">
+            <i class="fas fa-arrow-left me-1"></i> Back to All Rooms
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- -------x-- Room Image & Info --x------- -->
+
+  <!-- ---------- Room Features ---------- -->
+  <section class="section-pad bg-light-custom">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-6 fade-up">
+          <span class="section-label"><i class="fas fa-list-check me-1"></i> What's Included</span>
+          <h2 class="section-title">Room Amenities</h2>
+          <div class="divider-accent left"></div>
+          <div class="row g-2 mt-3">
+            <div class="col-6"><div class="d-flex gap-2"><i class="fas fa-circle-check text-accent mt-1"></i><span class="small">Single Bed with Mattress</span></div></div>
+            <div class="col-6"><div class="d-flex gap-2"><i class="fas fa-circle-check text-accent mt-1"></i><span class="small">Study Desk & Chair</span></div></div>
+            <div class="col-6"><div class="d-flex gap-2"><i class="fas fa-circle-check text-accent mt-1"></i><span class="small">Wardrobe / Cupboard</span></div></div>
+            <div class="col-6"><div class="d-flex gap-2"><i class="fas fa-circle-check text-accent mt-1"></i><span class="small">Bookshelf</span></div></div>
+            <div class="col-6"><div class="d-flex gap-2"><i class="fas fa-circle-check text-accent mt-1"></i><span class="small">Attached Bathroom</span></div></div>
+            <div class="col-6"><div class="d-flex gap-2"><i class="fas fa-circle-check text-accent mt-1"></i><span class="small">Air Conditioning</span></div></div>
+            <div class="col-6"><div class="d-flex gap-2"><i class="fas fa-circle-check text-accent mt-1"></i><span class="small">24-hr Hot Water</span></div></div>
+            <div class="col-6"><div class="d-flex gap-2"><i class="fas fa-circle-check text-accent mt-1"></i><span class="small">High-Speed WiFi</span></div></div>
+            <div class="col-6"><div class="d-flex gap-2"><i class="fas fa-circle-check text-accent mt-1"></i><span class="small">Power Backup</span></div></div>
+            <div class="col-6"><div class="d-flex gap-2"><i class="fas fa-circle-check text-accent mt-1"></i><span class="small">Daily Housekeeping</span></div></div>
+          </div>
+        </div>
+        <div class="col-lg-6 fade-up">
+          <span class="section-label"><i class="fas fa-info-circle me-1"></i> Policies</span>
+          <h2 class="section-title">Room Policies</h2>
+          <div class="divider-accent left"></div>
+          <ul class="mt-3" style="line-height:2;">
+            <li><i class="fas fa-check me-2 text-accent"></i>Quiet hours: 10 PM – 6 AM</li>
+            <li><i class="fas fa-check me-2 text-accent"></i>No guests after 9 PM</li>
+            <li><i class="fas fa-check me-2 text-accent"></i>Smoking not permitted inside</li>
+            <li><i class="fas fa-check me-2 text-accent"></i>1-month security deposit required</li>
+            <li><i class="fas fa-check me-2 text-accent"></i>Monthly rent due by the 5th</li>
+            <li><i class="fas fa-check me-2 text-accent"></i>30-day notice required for vacating</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- -------x-- Room Features --x------- -->
+
+  <!-- ---------- Booking CTA ---------- -->
+  <section class="section-pad" style="background:var(--primary);">
+    <div class="container text-center text-white fade-up">
+      <h2 class="mb-3">Interested in This Room?</h2>
+      <p style="color:rgba(255,255,255,.75);" class="mb-4">Submit your application today and our team will confirm availability within 24 hours.</p>
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a href="admission.html" class="btn-primary-custom pulse"><i class="fas fa-file-pen"></i> Apply Now</a>
+        <a href="rooms.html" class="btn-outline-custom"><i class="fas fa-door-open"></i> Browse More Rooms</a>
+      </div>
+    </div>
+  </section>
+  <!-- -------x-- Booking CTA --x------- -->
+
+  <!-- ---------- Footer ------------- -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="footer-brand mb-3"><i class="fas fa-building-columns"></i> HostelHub</div>
+          <p class="small">Premium student accommodation since 2009.</p>
+          <div class="social-icons mt-3">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-2">
+          <h6>Quick Links</h6>
+          <a href="../index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="rooms.html">Rooms</a>
+          <a href="admission.html">Apply</a>
+        </div>
+        <div class="col-6 col-lg-2">
+          <h6>Student</h6>
+          <a href="login.html">Login</a>
+          <a href="signup.html">Sign Up</a>
+          <a href="dashboard.html">Dashboard</a>
+        </div>
+        <div class="col-lg-4">
+          <h6>Contact Us</h6>
+          <p class="small"><i class="fas fa-location-dot me-2 text-accent"></i> 123 Campus Drive, University Town</p>
+          <p class="small"><i class="fas fa-phone me-2 text-accent"></i> +92 300 1234567 </p>
+          <p class="small"><i class="fas fa-envelope me-2 text-accent"></i> info@hostelhub.edu</p>
+        </div>
+      </div>
+      <hr class="footer-divider" />
+      <div class="footer-bottom d-flex justify-content-between flex-wrap gap-2">
+        <span>&copy; 2026 HostelHub. All rights reserved.</span>
+        <span>Built with <i class="fas fa-heart text-accent"></i> for Students</span>
+      </div>
+    </div>
+  </footer>
+  <!-- -------x-- Footer --x---------- -->
+  
+  <!-- ---------- Bootstrap JS ------- -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js">
+  </script>
+  <!-- -------x-- Bootstrap JS --x---- -->
+  
+  <!-- ---------- Custom JS ---------- -->
+  <script src="../js/main.js"></script>
+  <!-- -------x-- Custom JS --x------- -->
+  
+
+<script src="../js/api.js"></script>
+<script>
+  async function loadRoomDetails() {
+    const params = new URLSearchParams(window.location.search);
+    const id     = params.get('id');
+    if (!id) {
+      API.toast('No room selected', 'error');
+      return;
+    }
+
+    const r = await API.getRoom(id);
+    if (!r || !r.ok) {
+      API.toast('Room not found', 'error');
+      return;
+    }
+    const room = r.data;
+
+    // Safe DOM updates — never touch innerHTML or body
+    document.title = 'HostelHub – Room ' + room.room_number;
+
+    // Update every element that has these text patterns safely
+    const safeReplace = (selector, text) => {
+      document.querySelectorAll(selector).forEach(el => { el.textContent = text; });
+    };
+
+    // Room number headings
+    document.querySelectorAll('h1,h2,h3,h4,h5,.room-title').forEach(el => {
+      if (el.textContent.includes('Room 101')) el.textContent = el.textContent.replace('Room 101', 'Room ' + room.room_number);
+    });
+
+    // Price spans
+    document.querySelectorAll('span,div,p,strong').forEach(el => {
+      if (el.children.length === 0) {
+        if (el.textContent.includes('$120.00') || el.textContent.includes('120.00'))
+          el.textContent = el.textContent.replace(/\$?120\.00/, 'PKR ' + room.price.toLocaleString());
+        if (el.textContent.includes('Single Room'))
+          el.textContent = el.textContent.replace('Single Room', (room.room_type || 'Standard') + ' Room');
+        if (el.textContent.includes('1 / 2 Occupied') || el.textContent.match(/\d+ \/ \d+ Occupied/))
+          el.textContent = el.textContent.replace(/\d+ \/ \d+ Occupied/, room.occupancy + ' / ' + room.capacity + ' Occupied');
+      }
+    });
+
+    // Status badge — look for elements with text "Available" or "Full"
+    document.querySelectorAll('span,div').forEach(el => {
+      if (el.children.length === 0 && (el.textContent.trim() === 'Available' || el.textContent.trim() === 'Full' || el.textContent.trim() === 'Maintenance')) {
+        el.textContent = room.status;
+        el.style.color = room.status === 'Available' ? '#0d7a4e' : room.status === 'Full' ? '#c25a00' : '#888';
+      }
+    });
+
+    // Apply Now button: disable if room is not available
+    document.querySelectorAll('a[href*="admission"], button').forEach(el => {
+      if (el.textContent.toLowerCase().includes('apply') || el.textContent.toLowerCase().includes('book')) {
+        if (room.status !== 'Available') {
+          el.style.opacity = '0.5';
+          el.style.pointerEvents = 'none';
+          el.textContent = room.status === 'Full' ? 'Room Full' : 'Unavailable';
+        }
+      }
+    });
+  }
+
+  loadRoomDetails();
+</script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- ---------- Meta Tags ---------- -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <!-- -------x-- Meta Tags --x------- -->
+  
+  <title>HostelHub – Rooms</title>
+  
+  <!-- ---------- Bootstrap CSS ------ -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" />
+  <!-- -------x-- Bootstrap CSS --x--- -->
+  
+  <!-- ---------- Fontawesome -------- -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- -------x-- Fontawesome --x----- -->
+
+  <!-- ---------- Google Fonts ------- -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" />
+  <!-- -------x-- Google Fonts --x---- -->
+  
+  <!-- ---------- Custom CSS --------- -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* Filter Buttons */
+    .room-filter-btn {
+      border: 2px solid var(--border); background: var(--white);
+      color: var(--text-muted); padding: .45rem 1.1rem;
+      border-radius: 50px; font-size: .88rem; font-weight: 600;
+      cursor: pointer; transition: var(--transition);
+    }
+    .room-filter-btn.active,
+    .room-filter-btn:hover {
+      background: var(--primary); color: var(--white); border-color: var(--primary);
+    }
+    .room-card img { height: 200px; width: 100%; object-fit: cover; }
+  </style>
+  <!-- -------x-- Custom CSS --x------ -->
+
+</head>
+<body>
+
+  <!-- ---------- Navbar ---------- -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html"><i class="fas fa-building-columns"></i> HostelHub</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-center gap-1">
+          <li class="nav-item"><a class="nav-link" href="../index.html"><i class="fas fa-house me-1"></i>Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html"><i class="fas fa-circle-info me-1"></i>About</a></li>
+          <li class="nav-item"><a class="nav-link active" href="rooms.html"><i class="fas fa-door-open me-1"></i>Rooms</a></li>
+          <li class="nav-item"><a class="nav-link" href="admission.html"><i class="fas fa-file-pen me-1"></i>Apply</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html"><i class="fas fa-right-to-bracket me-1"></i>Login</a></li>
+          <li class="nav-item"><a class="nav-link btn-nav-cta ms-2" href="signup.html"><i class="fas fa-user-plus me-1"></i>Sign Up</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- -------x-- Navbar --x------- -->
+
+  <!-- ---------- Page Banner ---------- -->
+  <section class="page-banner">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-3">
+          <li class="breadcrumb-item"><a href="../index.html" style="color:var(--accent);">Home</a></li>
+          <li class="breadcrumb-item active text-white">Rooms</li>
+        </ol>
+      </nav>
+      <h1 class="fade-up">Available Rooms</h1>
+      <p class="fade-up">Browse and filter our range of comfortable rooms</p>
+    </div>
+  </section>
+  <!-- -------x-- Page Banner --x------- -->
+  
+  <!-- ---------- Filter Bar ---------- -->
+  <section class="py-4 bg-light-custom border-bottom">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center gap-2">
+        <span class="fw-600 me-2 text-primary-custom"><i class="fas fa-filter me-1"></i>Filter:</span>
+        <button class="room-filter-btn active" data-filter="all">All Rooms</button>
+        <button class="room-filter-btn" data-filter="single">Single</button>
+        <button class="room-filter-btn" data-filter="double">Double</button>
+        <button class="room-filter-btn" data-filter="triple">Triple</button>
+        <button class="room-filter-btn" data-filter="dorm">Dormitory</button>
+      </div>
+    </div>
+  </section>
+  <!-- -------x-- Filter Bar --x------- -->
+  
+
+  <!-- ---------- Rooms ---------- -->
+  <section class="section-pad">
+    <div class="container">
+      <div id="roomsGrid" class="row g-4">
+        <!-- Rooms are loaded dynamically by api.js -->
+        <div class="col-12 text-center py-5">
+          <i class="fas fa-spinner fa-spin fa-2x text-muted"></i>
+          <p class="mt-3 text-muted">Loading rooms...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- -------x-- Rooms --x------- -->
+
+  <!-- ---------- Footer ------------- -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="footer-brand mb-3"><i class="fas fa-building-columns"></i> HostelHub</div>
+          <p class="small">Premium student accommodation providing safe, comfortable, and affordable living spaces since 2009.</p>
+          <div class="social-icons mt-3">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-2">
+          <h6>Quick Links</h6>
+          <a href="../index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="rooms.html">Rooms</a>
+          <a href="admission.html">Apply</a>
+        </div>
+        <div class="col-6 col-lg-2">
+          <h6>Student</h6>
+          <a href="login.html">Login</a>
+          <a href="signup.html">Sign Up</a>
+          <a href="dashboard.html">Dashboard</a>
+        </div>
+        <div class="col-lg-4">
+          <h6>Contact Us</h6>
+          <p class="small"><i class="fas fa-location-dot me-2 text-accent"></i> 123 Campus Drive, University Town</p>
+          <p class="small"><i class="fas fa-phone me-2 text-accent"></i> +92 300 1234567 </p>
+          <p class="small"><i class="fas fa-envelope me-2 text-accent"></i> info@hostelhub.edu</p>
+        </div>
+      </div>
+      <hr class="footer-divider" />
+      <div class="footer-bottom d-flex justify-content-between flex-wrap gap-2">
+        <span>&copy; 2026 HostelHub. All rights reserved.</span>
+        <span>Built with <i class="fas fa-heart text-accent"></i> for Students</span>
+      </div>
+    </div>
+  </footer>
+  <!-- -------x-- Footer --x---------- -->
+  
+  <!-- ---------- Bootstrap JS ------- -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js">
+  </script>
+  <!-- -------x-- Bootstrap JS --x---- -->
+  
+  <!-- ---------- Custom JS ---------- -->
+  <script src="../js/main.js"></script>
+  <!-- -------x-- Custom JS --x------- -->
+
+<script src="../js/api.js"></script>
+<script>
+  async function loadRooms() {
+    const grid = document.getElementById('roomsGrid');
+    grid.innerHTML = '<div class="col-12 text-center py-5"><i class="fas fa-spinner fa-spin fa-2x text-muted"></i><p class="mt-2 text-muted">Loading rooms...</p></div>';
+
+    const r = await API.getRooms();
+    if (!r || !r.ok || r.data.length === 0) {
+      grid.innerHTML = '<div class="col-12 text-center py-5 text-muted">No rooms available at the moment.</div>';
+      return;
+    }
+
+    const typeMap = { 'Single':'single', 'Double':'double', 'Triple':'triple', 'Dorm':'dorm', 'Dormitory':'dorm', 'Standard':'single' };
+
+    grid.innerHTML = r.data.map(room => {
+      const dataType = typeMap[room.room_type] || 'single';
+      const statusColor = room.status === 'Available' ? '#0d7a4e' : room.status === 'Full' ? '#c25a00' : '#888';
+      const statusIcon  = room.status === 'Available' ? 'circle-check' : room.status === 'Full' ? 'ban' : 'wrench';
+      return `
+        <div class="col-md-6 col-lg-4 room-card fade-up" data-type="${dataType}">
+          <div class="card-custom overflow-hidden h-100">
+            <div style="background:linear-gradient(135deg,var(--primary),#0d2540);height:160px;display:flex;align-items:center;justify-content:center;">
+              <i class="fas fa-door-open fa-4x" style="color:rgba(255,255,255,.3);"></i>
+            </div>
+            <div class="p-4">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <h5 class="fw-700 mb-0">Room ${room.room_number}</h5>
+                <span style="font-size:.75rem;font-weight:600;color:${statusColor};">
+                  <i class="fas fa-${statusIcon} me-1"></i>${room.status}
+                </span>
+              </div>
+              <p class="text-muted small mb-3">${room.description || room.room_type + ' Room'}</p>
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                  <div class="fw-700 text-primary-custom">PKR ${room.price.toLocaleString()}<span class="text-muted fw-400 small">/mo</span></div>
+                  <small class="text-muted">${room.occupancy}/${room.capacity} occupied</small>
+                </div>
+                <span class="badge" style="background:rgba(26,60,94,.1);color:var(--primary);padding:.4rem .8rem;">${room.room_type || 'Standard'}</span>
+              </div>
+              <a href="room-details.html?id=${room.id}" class="btn-primary-custom w-100 justify-content-center" style="${room.status !== 'Available' ? 'opacity:.5;pointer-events:none;' : ''}">
+                <i class="fas fa-eye"></i> View Details
+              </a>
+            </div>
+          </div>
+        </div>`;
+    }).join('');
+
+    // Re-apply filters
+    const activeFilter = document.querySelector('.room-filter-btn.active');
+    if (activeFilter && activeFilter.dataset.filter !== 'all') {
+      document.querySelectorAll('.room-card').forEach(card => {
+        card.style.display = card.dataset.type === activeFilter.dataset.filter ? '' : 'none';
+      });
+    }
+
+    // Re-run fade observer from main.js
+    document.querySelectorAll('.fade-up').forEach(el => el.classList.add('visible'));
+
+    // Wire up filter buttons (safe to do after cards are rendered)
+    document.querySelectorAll('.room-filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.room-filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const filter = this.dataset.filter;
+        document.querySelectorAll('.room-card').forEach(card => {
+          card.style.display = (filter === 'all' || card.dataset.type === filter) ? '' : 'none';
+        });
+      });
+    });
+  }
+
+  loadRooms();
+</script>
+</body>
+</html>

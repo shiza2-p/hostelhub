@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- ---------- Meta Tags ---------- -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <!-- -------x-- Meta Tags --x------- -->
+  
+  <title>HostelHub – Admission / Apply</title>
+  
+  <!-- ---------- Bootstrap CSS ------ -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" />
+  <!-- -------x-- Bootstrap CSS --x--- -->
+  
+  <!-- ---------- Fontawesome -------- -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- -------x-- Fontawesome --x----- -->
+  
+  <!-- ---------- Google Fonts ------- -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" />
+  <!-- -------x-- Google Fonts --x---- -->
+  
+  <!-- ---------- Custom CSS --------- -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <!-- -------x-- Custom CSS --x------ -->
+  <style>
+    .step-indicator { display: flex; gap: 0; margin-bottom: 2.5rem; }
+    .step { flex: 1; text-align: center; position: relative; }
+    .step-circle {
+      width: 40px; height: 40px; border-radius: 50%; background: var(--border);
+      color: var(--text-muted); font-weight: 700; font-size: .9rem;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto .4rem; z-index: 1; position: relative;
+    }
+    .step.active .step-circle  { background: var(--primary); color: white; }
+    .step.done   .step-circle  { background: #0d7a4e; color: white; }
+    .step::after {
+      content: ''; position: absolute; top: 20px; left: 50%;
+      width: 100%; height: 2px; background: var(--border); z-index: 0;
+    }
+    .step:last-child::after { display: none; }
+    .step-label { font-size: .78rem; color: var(--text-muted); }
+    .step.active .step-label { color: var(--primary); font-weight: 700; }
+    .form-section { display: none; }
+    .form-section.show { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- ---------- Navbar ---------- -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html"><i class="fas fa-building-columns"></i> HostelHub</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-center gap-1">
+          <li class="nav-item"><a class="nav-link" href="../index.html"><i class="fas fa-house me-1"></i>Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html"><i class="fas fa-circle-info me-1"></i>About</a></li>
+          <li class="nav-item"><a class="nav-link" href="rooms.html"><i class="fas fa-door-open me-1"></i>Rooms</a></li>
+          <li class="nav-item"><a class="nav-link active" href="admission.html"><i class="fas fa-file-pen me-1"></i>Apply</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html"><i class="fas fa-right-to-bracket me-1"></i>Login</a></li>
+          <li class="nav-item"><a class="nav-link btn-nav-cta ms-2" href="signup.html"><i class="fas fa-user-plus me-1"></i>Sign Up</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- -------x-- Navbar --x------- -->
+  
+  <!-- ---------- Page Banner ---------- -->
+  <section class="page-banner">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-3">
+          <li class="breadcrumb-item"><a href="../index.html" style="color:var(--accent);">Home</a></li>
+          <li class="breadcrumb-item active text-white">Apply</li>
+        </ol>
+      </nav>
+      <h1 class="fade-up">Hostel Admission Application</h1>
+      <p class="fade-up">Complete the form below to apply for a room. Our team will respond within 24 hours.</p>
+    </div>
+  </section>
+  <!-- -------x-- Page Banner --x------- -->
+
+  <!-- ---------- Application Form ---------- -->
+  <section class="section-pad bg-light-custom">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card-custom p-4 p-md-5">
+            <div class="step-indicator">
+              <div class="step done" id="stepInd1"><div class="step-circle"><i class="fas fa-user"></i></div><div class="step-label">Personal</div></div>
+              <div class="step active" id="stepInd2"><div class="step-circle">2</div><div class="step-label">Academic</div></div>
+              <div class="step" id="stepInd3"><div class="step-circle">3</div><div class="step-label">Room</div></div>
+              <div class="step" id="stepInd4"><div class="step-circle">4</div><div class="step-label">Submit</div></div>
+            </div>
+
+            <form class="needs-validate" novalidate id="admissionForm">
+              <div class="form-section show" id="step1">
+                <h4 class="mb-4 text-primary-custom"><i class="fas fa-user me-2 text-accent"></i>Personal Information</h4>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label fw-600">First Name <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control form-control-custom" id="admFirstName" placeholder="John" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-600">Last Name <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control form-control-custom" id="admLastName" placeholder="Doe" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-600">Date of Birth <span class="text-danger">*</span></label>
+                    <input type="date" class="form-control form-control-custom" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-600">Gender <span class="text-danger">*</span></label>
+                    <select class="form-control form-control-custom" required>
+                      <option value="">-- Select --</option>
+                      <option>Male</option>
+                      <option>Female</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-600">Email Address <span class="text-danger">*</span></label>
+                    <input type="email" class="form-control form-control-custom" id="admEmail" placeholder="john@email.com" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-600">Phone Number <span class="text-danger">*</span></label>
+                    <input type="tel" class="form-control form-control-custom" id="admPhone" placeholder="+1 555 0123" required />
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label fw-600">Permanent Address <span class="text-danger">*</span></label>
+                    <textarea class="form-control form-control-custom" id="admAddress" rows="3" placeholder="Your full home address..." required></textarea>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-end mt-4">
+                  <button type="button" class="btn-primary-custom" onclick="showStep(2)">Next <i class="fas fa-arrow-right"></i></button>
+                </div>
+              </div>
+              <div class="form-section" id="step2">
+                <h4 class="mb-4 text-primary-custom"><i class="fas fa-graduation-cap me-2 text-accent"></i>Academic Information</h4>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label fw-600">Student ID / Roll No. <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control form-control-custom" id="admStudentId" placeholder="CS-2024-0042" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-600">Department / Faculty</label>
+                    <input type="text" class="form-control form-control-custom" placeholder="Computer Science" />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-600">Year of Study</label>
+                    <select class="form-control form-control-custom">
+                      <option value="">-- Select --</option>
+                      <option>Year 1</option>
+                      <option>Year 2</option>
+                      <option>Year 3</option>
+                      <option>Year 4</option>
+                      <option>Postgraduate</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-600">Expected Duration</label>
+                    <select class="form-control form-control-custom">
+                      <option value="">-- Select --</option>
+                      <option>1 Semester</option>
+                      <option>1 Academic Year</option>
+                      <option>2 Academic Years</option>
+                      <option>Full Course</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label fw-600">Emergency Contact Name & Phone</label>
+                    <input type="text" class="form-control form-control-custom" id="admEmergency" placeholder="Parent / Guardian – +1 555 9999" />
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between mt-4">
+                  <button type="button" class="btn btn-outline-secondary" onclick="showStep(1)"><i class="fas fa-arrow-left"></i> Back</button>
+                  <button type="button" class="btn-primary-custom" onclick="showStep(3)">Next <i class="fas fa-arrow-right"></i></button>
+                </div>
+              </div>
+              <div class="form-section" id="step3">
+                <h4 class="mb-4 text-primary-custom"><i class="fas fa-door-open me-2 text-accent"></i>Room Preference</h4>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label fw-600">Room Type</label>
+                    <select class="form-control form-control-custom">
+                      <option value="">-- Select --</option>
+                      <option>Single Room</option>
+                      <option>Double Room</option>
+                      <option>Triple Room</option>
+                      <option>Dormitory (6-bed)</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-600">Preferred Floor</label>
+                    <select class="form-control form-control-custom">
+                      <option value="">No Preference</option>
+                      <option>Ground Floor</option>
+                      <option>1st Floor</option>
+                      <option>2nd Floor</option>
+                      <option>3rd Floor</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-600">Check-in Date</label>
+                    <input type="date" class="form-control form-control-custom" />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-600">Meal Plan</label>
+                    <select class="form-control form-control-custom">
+                      <option>No Meal Plan</option>
+                      <option>Breakfast Only</option>
+                      <option>Breakfast + Dinner</option>
+                      <option>Full Board (3 Meals)</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label fw-600">Special Requirements / Notes</label>
+                    <textarea class="form-control form-control-custom" rows="3" placeholder="Any dietary restrictions, accessibility needs, etc."></textarea>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label fw-600">Upload Photo ID</label>
+                    <input type="file" class="form-control form-control-custom" accept=".pdf,.jpg,.png" />
+                    <small class="text-muted">PDF, JPG or PNG – max 2MB</small>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between mt-4">
+                  <button type="button" class="btn btn-outline-secondary" onclick="showStep(2)"><i class="fas fa-arrow-left"></i> Back</button>
+                  <button type="button" class="btn-primary-custom" onclick="showStep(4)">Review <i class="fas fa-eye"></i></button>
+                </div>
+              </div>
+              <div class="form-section" id="step4">
+                <h4 class="mb-4 text-primary-custom"><i class="fas fa-paper-plane me-2 text-accent"></i>Review & Submit</h4>
+                <div class="alert alert-info border-0" style="background:rgba(26,60,94,.07);border-left:4px solid var(--primary) !important;">
+                  <i class="fas fa-info-circle me-2"></i> Please review your information before submitting. Our team will contact you within <strong>24 hours</strong> to confirm your application.
+                </div>
+                <div class="mb-3">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="agreeTerms" required />
+                    <label class="form-check-label small" for="agreeTerms">
+                      I agree to the <a href="#" class="text-accent">Terms & Conditions</a> and <a href="#" class="text-accent">Hostel Rules</a>.
+                    </label>
+                  </div>
+                  <div class="form-check mt-2">
+                    <input class="form-check-input" type="checkbox" id="agreePayment" required />
+                    <label class="form-check-label small" for="agreePayment">
+                      I understand a 1-month security deposit is required upon confirmation.
+                    </label>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between mt-4">
+                  <button type="button" class="btn btn-outline-secondary" onclick="showStep(3)"><i class="fas fa-arrow-left"></i> Back</button>
+                  <button type="submit" id="admSubmitBtn" class="btn-primary-custom pulse"><i class="fas fa-paper-plane"></i> Submit Application</button>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- -------x-- Application Form --x------- -->
+
+  <!-- ---------- Footer ------------- -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="footer-brand mb-3"><i class="fas fa-building-columns"></i> HostelHub</div>
+          <p class="small">Premium student accommodation since 2009.</p>
+          <div class="social-icons mt-3">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-2">
+          <h6>Quick Links</h6>
+          <a href="../index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="rooms.html">Rooms</a>
+          <a href="admission.html">Apply</a>
+        </div>
+        <div class="col-6 col-lg-2">
+          <h6>Student</h6>
+          <a href="login.html">Login</a>
+          <a href="signup.html">Sign Up</a>
+          <a href="dashboard.html">Dashboard</a>
+        </div>
+        <div class="col-lg-4">
+          <h6>Contact Us</h6>
+          <p class="small"><i class="fas fa-location-dot me-2 text-accent"></i> 123 Campus Drive, University Town</p>
+          <p class="small"><i class="fas fa-phone me-2 text-accent"></i> +92 300 1234567 </p>
+          <p class="small"><i class="fas fa-envelope me-2 text-accent"></i> info@hostelhub.edu</p>
+        </div>
+      </div>
+      <hr class="footer-divider" />
+      <div class="footer-bottom d-flex justify-content-between flex-wrap gap-2">
+        <span>&copy; 2026 HostelHub. All rights reserved.</span>
+        <span>Built with <i class="fas fa-heart text-accent"></i> for Students</span>
+      </div>
+    </div>
+  </footer>
+  <!-- -------x-- Footer --x---------- -->
+  
+  <!-- ---------- Bootstrap JS ------- -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js">
+  </script>
+  <!-- -------x-- Bootstrap JS --x---- -->
+  
+  <!-- ---------- Custom JS ---------- -->
+  <script src="../js/main.js"></script>
+  <script>
+      <!--
+    function showStep(n) {
+      document.querySelectorAll('.form-section').forEach(s => s.classList.remove('show'));
+      document.getElementById('step' + n).classList.add('show');
+      for (let i = 1; i <= 4; i++) {
+        const ind = document.getElementById('stepInd' + i);
+        ind.classList.remove('active', 'done');
+        if (i < n)  ind.classList.add('done');
+        if (i === n) ind.classList.add('active');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    showStep(1);
+    -->
+  </script>
+
+
+
+<script>
+    
+
+  function showStep(n) {
+    document.querySelectorAll('.form-section').forEach(s => s.classList.remove('show'));
+    document.getElementById('step' + n).classList.add('show');
+    for (let i = 1; i <= 4; i++) {
+      const ind = document.getElementById('stepInd' + i);
+      ind.classList.remove('active', 'done');
+      if (i < n)  ind.classList.add('done');
+      if (i === n) ind.classList.add('active');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  showStep(1);
+
+
+const originalShowStep = showStep;
+   window.showStep = function(targetStep) {
+      let currentStep = null;
+       if (document.getElementById('step1').classList.contains('show')) { currentStep = 1; }
+    else if (document.getElementById('step2').classList.contains('show')) { currentStep = 2; }
+    else if (document.getElementById('step3').classList.contains('show')) { currentStep = 3; }
+    else if (document.getElementById('step4').classList.contains('show')) { currentStep = 4; }
+
+    if (targetStep > currentStep) {
+      const currentStepElement = document.getElementById('step' + currentStep);
+      const requiredFields = currentStepElement.querySelectorAll('[required]');
+      
+      let firstEmptyField = null;
+      requiredFields.forEach(function(field) {
+        field.classList.remove('is-invalid');
+
+        let isEmpty = false;
+
+        if (field.tagName === 'SELECT') {
+          isEmpty = field.value === '';
+
+        } else if (field.type === 'checkbox') {
+          isEmpty = field.checked === false;
+
+        } else {
+          isEmpty = field.value.trim() === '';
+        }
+
+        if (isEmpty) {
+          field.classList.add('is-invalid');
+
+
+          if (firstEmptyField === null) {
+            firstEmptyField = field;
+          }
+        }
+
+      });
+
+      if (firstEmptyField !== null) {
+        firstEmptyField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        firstEmptyField.focus();
+        return;
+      }
+
+    }
+
+    originalShowStep(targetStep);
+
+  };
+ document.getElementById('admissionForm').addEventListener('input', function(event) {
+    event.target.classList.remove('is-invalid');
+  });
+
+  document.getElementById('admissionForm').addEventListener('change', function(event) {
+    event.target.classList.remove('is-invalid');
+  });
+
+</script>
+  <!-- -------x-- Custom JS --x------- -->
+  
+
+  <script src="../js/api.js"></script>
+  <script>
+    // Show a soft banner if not logged in — do NOT redirect, let them fill the form freely
+    if (!API.isLoggedIn()) {
+      const banner = document.createElement('div');
+      banner.style.cssText = 'background:#fff3cd;color:#856404;padding:10px 20px;text-align:center;font-size:.9rem;border-bottom:1px solid #ffc107;';
+      banner.innerHTML = '<i class="fas fa-info-circle me-2"></i>You\'ll need to <a href="login.html" style="color:#856404;font-weight:700;">log in</a> or <a href="signup.html" style="color:#856404;font-weight:700;">sign up</a> before submitting your application.';
+      document.body.insertBefore(banner, document.body.firstChild);
+    }
+
+    document.getElementById('admissionForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      // Only check login at submit time — no surprise redirects
+      if (!API.isLoggedIn()) {
+        API.toast('Please log in or sign up first, then come back to submit.', 'warning');
+        setTimeout(() => window.location.href = 'login.html', 2000);
+        return;
+      }
+
+      const full_name = (document.getElementById('admFirstName').value.trim() + ' ' +
+                         document.getElementById('admLastName').value.trim()).trim();
+      const phone     = document.getElementById('admPhone').value.trim();
+      const address   = document.getElementById('admAddress') ? document.getElementById('admAddress').value.trim() : '';
+      const emergency = document.getElementById('admEmergency') ? document.getElementById('admEmergency').value.trim() : '';
+
+      if (!full_name || !phone) { API.toast('Name and phone are required', 'error'); return; }
+
+      const btn = document.getElementById('admSubmitBtn');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+
+      const r = await API.registerStudent({ full_name, phone, address, emergency_contact: emergency });
+
+      if (r.ok) {
+        btn.innerHTML = '<i class="fas fa-check"></i> Submitted!';
+        API.toast('Application submitted! Awaiting admin approval.');
+        setTimeout(() => window.location.href = 'dashboard.html', 2000);
+      } else {
+        API.toast(r.data.message || 'Submission failed', 'error');
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Application';
+      }
+    });
+  </script>
+</body>
+</html>
