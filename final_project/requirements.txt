@@ -4,3 +4,4 @@ flask-jwt-extended
 flask-sqlalchemy
 werkzeug
 gunicorn
+psycopg2-binary
