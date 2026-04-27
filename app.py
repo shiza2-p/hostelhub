@@ -14,13 +14,12 @@ CORS(app)
 # CONFIGURATION
 # IMPORTANT: JWT_SECRET_KEY must come from an environment variable
 # ─────────────────────────────────────────────
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
-    'DATABASE_URL', 'sqlite:///hostel.db'
-)
+db_url = os.environ.get('DATABASE_URL', 'sqlite:///hostel.db')
+if db_url.startswith("postgres://"):
+    db_url = db_url.replace("postgres://", "postgresql://", 1)
+app.config['SQLALCHEMY_DATABASE_URI'] = db_url
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['JWT_SECRET_KEY'] = os.environ.get(
-    'JWT_SECRET_KEY', 'change-this-in-production'
-)
+app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET_KEY', 'change-this-before-deploy')
 
 db.init_app(app)
 jwt = JWTManager(app)
@@ -29,16 +28,15 @@ with app.app_context():
     db.create_all()
     if Room.query.count() == 0:
         rooms = [
-            Room(room_number="101", room_type="Single", capacity=1, price=5000, status="Available", description="Comfortable single room with attached bathroom"),
-            Room(room_number="102", room_type="Single", capacity=1, price=5000, status="Available", description="Comfortable single room with attached bathroom"),
-            Room(room_number="201", room_type="Double", capacity=2, price=8000, status="Available", description="Spacious double room with two beds"),
-            Room(room_number="202", room_type="Double", capacity=2, price=8000, status="Available", description="Spacious double room with two beds"),
-            Room(room_number="301", room_type="Triple", capacity=3, price=10000, status="Available", description="Triple room ideal for groups"),
-            Room(room_number="401", room_type="Dormitory", capacity=6, price=3000, status="Available", description="Affordable dormitory with shared facilities"),
+            Room(room_number="101", room_type="Single", capacity=1, price=5000, status="Available", description="Comfortable single room"),
+            Room(room_number="102", room_type="Single", capacity=1, price=5000, status="Available", description="Comfortable single room"),
+            Room(room_number="201", room_type="Double", capacity=2, price=8000, status="Available", description="Spacious double room"),
+            Room(room_number="202", room_type="Double", capacity=2, price=8000, status="Available", description="Spacious double room"),
+            Room(room_number="301", room_type="Triple", capacity=3, price=10000, status="Available", description="Triple room"),
+            Room(room_number="401", room_type="Dormitory", capacity=6, price=3000, status="Available", description="Dormitory room"),
         ]
         db.session.add_all(rooms)
         db.session.commit()
-
 
 # ─────────────────────────────────────────────
 # HELPER FUNCTIONS
