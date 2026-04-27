@@ -27,6 +27,17 @@ jwt = JWTManager(app)
 
 with app.app_context():
     db.create_all()
+    if Room.query.count() == 0:
+        rooms = [
+            Room(room_number="101", room_type="Single", capacity=1, price=5000, status="Available", description="Comfortable single room with attached bathroom"),
+            Room(room_number="102", room_type="Single", capacity=1, price=5000, status="Available", description="Comfortable single room with attached bathroom"),
+            Room(room_number="201", room_type="Double", capacity=2, price=8000, status="Available", description="Spacious double room with two beds"),
+            Room(room_number="202", room_type="Double", capacity=2, price=8000, status="Available", description="Spacious double room with two beds"),
+            Room(room_number="301", room_type="Triple", capacity=3, price=10000, status="Available", description="Triple room ideal for groups"),
+            Room(room_number="401", room_type="Dormitory", capacity=6, price=3000, status="Available", description="Affordable dormitory with shared facilities"),
+        ]
+        db.session.add_all(rooms)
+        db.session.commit()
 
 
 # ─────────────────────────────────────────────
