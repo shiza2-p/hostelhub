@@ -2,5 +2,6 @@ flask
 flask-cors
 flask-jwt-extended
 flask-sqlalchemy
-flask-login
 werkzeug
+gunicorn
+psycopg2-binary
